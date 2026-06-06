@@ -1,18 +1,29 @@
 #include <iostream>
-#include<string>
+#include <string>
 using namespace std;
-int main(){
+
+int main() {
     string str;
-    cout<<"Enter your string"<<endl;
-    cin>>str;
-    int flag=0;
-    for(char ch:str){
-        flag=flag|(1<<(ch-'A'));
+    getline(cin, str);
+
+    int upper = 0;
+    int lower = 0;
+
+    for (char ch : str) {
+        if (ch >= 'A' && ch <= 'Z') {
+            upper |= (1 << (ch - 'A'));
+        }
+        else if (ch >= 'a' && ch <= 'z') {
+            lower |= (1 << (ch - 'a'));
+        }
     }
-    if(flag==(1<<26)-1){
-        cout<<"True";
-    }
-    else{
-        cout<<"False";
-    }
+
+    int allLetters = (1 << 26) - 1;
+
+    if (upper == allLetters && lower == allLetters)
+        cout << "True";
+    else
+        cout << "False";
+
+    return 0;
 }
